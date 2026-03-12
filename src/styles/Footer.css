@@ -1,0 +1,9 @@
+footer {
+  background: var(--card-bg-light);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+body.dark footer {
+  background: var(--card-bg-dark);
+}
