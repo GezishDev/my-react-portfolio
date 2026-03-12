@@ -8,20 +8,20 @@ const certifications = [
   {
     title: "Cisco CCNA Introduction to Networks",
     issuer: "Cisco",
-    date: "2024",
+    date: "2026",
+    image: "/certificates/ccna1.png",
+  },
+  {
+    title: "Cisco CCNA Enterprise Networking, Security, and Automation",
+    issuer: "Cisco",
+    date: "2026",
     image: "/certificates/ccna.png",
   },
   {
-    title: "Web Development Bootcamp",
-    issuer: "Udemy",
-    date: "2023",
-    image: "/certificates/web-dev-bootcamp.jpg",
-  },
-  {
-    title: "JavaScript Certification",
-    issuer: "freeCodeCamp",
-    date: "2023",
-    image: "/certificates/js-cert.jpg",
+    title: "Cisco CCNA Switching, Routing, and Wireless Essentials",
+    issuer: "Cisco",
+    date: "2026",
+    image: "/certificates/ccna2.png",
   },
 ];
 
