@@ -1,16 +1,82 @@
-# React + Vite
+# Portfolio Website - Gezahegn Abera
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React and Vite, showcasing my journey as a Frontend Developer, React Developer, Flutter Developer, Network Engineer, and Computer Science Student.
 
-Currently, two official plugins are available:
+## 🚀 Brief Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This portfolio highlights my skills in web and mobile development, featuring interactive animations, responsive design, and a clean user interface. It includes sections for projects, skills, certifications, and contact information.
 
-## React Compiler
+## 📋 Detailed Description
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### About Me
+I'm Gezahegn Abera, passionate about creating innovative digital solutions. With expertise in frontend development using React and modern web technologies, I also have experience in mobile app development with Flutter and networking fundamentals.
 
-## Expanding the ESLint configuration
+### Key Features
+- **Responsive Design**: Optimized for all devices with mobile-first approach
+- **Interactive Hero Section**: Animated typing effect showcasing my roles
+- **Dark/Light Theme**: Toggle between themes for better user experience
+- **Smooth Animations**: Powered by Framer Motion and AOS for engaging transitions
+- **Project Showcase**: Display of my development projects with descriptions
+- **Skills & Certifications**: Visual representation of technical skills and achievements
+- **Contact Integration**: Easy ways to get in touch
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Technologies Used
+- **Frontend**: React, JavaScript (ES6+), HTML5, CSS3
+- **Build Tools**: Vite, ESLint
+- **Animations**: Framer Motion, AOS, React Typed
+- **Icons**: React Icons
+- **Styling**: CSS Modules, Custom CSS with CSS Variables
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <your-repo-url>
+   cd portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Preview Production Build
+```bash
+npm run preview
+```
+
+## 📄 Available Scripts
+
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint for code quality checks
+
+## 📞 Contact
+
+Feel free to reach out for collaborations or opportunities:
+- Email: [Your Email]
+- LinkedIn: [Your LinkedIn]
+- GitHub: [Your GitHub]
+
+---
+
+Built with ❤️ using React & Vite
