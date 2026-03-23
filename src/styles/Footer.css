@@ -7,3 +7,43 @@ footer {
 body.dark footer {
   background: var(--card-bg-dark);
 }
+@media (max-width: 768px) {
+  footer {
+    padding: 1rem;
+  }
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+footer {
+  background: var(--card-bg-light);
+  padding: 2rem 0;
+  text-align: center;
+  width: 100%;
+  position: relative;   /* not absolute */
+  bottom: 0;
+  left: 0;
+  margin-top: auto;     /* if using flex on parent, helps push to bottom */
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: inherit;
+  word-break: break-word;
+}
+
+/* Dark mode variant */
+body.dark footer {
+  background: var(--card-bg-dark);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem 0;
+  }
+  footer p {
+    font-size: 0.8rem;
+  }
+}

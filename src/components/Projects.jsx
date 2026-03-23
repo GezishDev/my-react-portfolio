@@ -4,28 +4,28 @@ import "../styles/Projects.css";
 
 const projects = [
   {
-    titleKey: "projects.ecommerce.title",
-    descKey: "projects.ecommerce.desc",
-    tech: ["React", "Node.js", "MongoDB"],
-    image: "/project1.jpg", // replace with actual path
-    live: "https://example.com",
-    github: "https://github.com/yourusername/project1",
+    titleKey: "projects.recipe.title",
+    descKey: "projects.recipe.desc",
+    tech: ["React", "Firebase", "Tailwind CSS"],
+    image: "/Recipe_sharing_app_homepage.png", // ← your screenshot path
+    live: "hhttps://github.com/GezishDev/Recipe-Sharing-App", // ← replace with your demo link
+    github: "https://github.com/GezishDev/Recipe-Sharing-App",
   },
   {
-    titleKey: "projects.chat.title",
-    descKey: "projects.chat.desc",
-    tech: ["React", "Socket.io", "Express"],
-    image: "/project2.jpg",
-    live: "https://example.com",
-    github: "https://github.com/yourusername/project2",
+    titleKey: "projects.pharmacy.title",
+    descKey: "projects.pharmacy.desc",
+    tech: ["PHP", "MySQL", "Bootstrap"],
+    image: "/pharmacy_home.png",
+    live: "https://github.com/GezishDev/pharmacy-management-system",
+    github: "https://github.com/GezishDev/pharmacy-management-system",
   },
   {
-    titleKey: "projects.dashboard.title",
-    descKey: "projects.dashboard.desc",
-    tech: ["React", "Node.js", "MongoDB", "Chart.js"],
-    image: "/project3.jpg",
-    live: "https://example.com",
-    github: "https://github.com/yourusername/project3",
+    titleKey: "projects.makeup.title",
+    descKey: "projects.makeup.desc",
+    tech: ["HTML", "CSS", "JavaScript"],
+    image: "/Home.png",
+    live: "https://github.com/GezishDev/feven-makeup-store",
+    github: "https://github.com/GezishDev/feven-makeup-store",
   },
 ];
 

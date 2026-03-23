@@ -27,7 +27,13 @@
   "skills.tools": "Tools",
   "projects.title": "Projects",
   "projects.viewCode": "Code",
-  "projects.liveDemo": "Live Demo",
+  "projects.liveDemo": "Live Demo Soon",
+  "projects.recipe.title": "Recipe Sharing App",
+  "projects.recipe.desc": "A platform where users can share, discover, and save recipes. Built with React and Firebase for real‑time updates.",
+  "projects.pharmacy.title": "Pharmacy Management System",
+  "projects.pharmacy.desc": "A complete system to manage medicines, suppliers, and sales. Developed with PHP and MySQL.",
+  "projects.makeup.title": "Feven Makeup Store",
+  "projects.makeup.desc": "A responsive e‑commerce site for makeup products. Built with HTML, CSS, JavaScript.",
   "certifications.title": "Certifications",
   "certs.ccna.issuer": "Cisco",
   "certs.ccna1.title": "Cisco CCNA Introduction to Networks",
@@ -35,6 +41,12 @@
   "certs.ccna3.title": "Cisco CCNA Switching, Routing, and Wireless Essentials",
   "contact.title": "Let's Connect",
   "contact.description": "I'm always open to discussing new projects, creative ideas, or opportunities.",
+ 
+  "contact.email": "Email",
+  "contact.phone": "+251988161928",
+  "contact.github": "GitHub",
+
+
   "contact.sendMessage": "Send a Message",
   "contact.namePlaceholder": "Your Name",
   "contact.emailPlaceholder": "Your Email",

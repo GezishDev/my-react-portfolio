@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiMail, FiGithub, FiPhone } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Contact.css";
 
@@ -43,19 +43,17 @@ const Contact = () => {
             <a href="mailto:gezahegn@example.com">
               <FiMail /> {t("contact.email")}
             </a>
+            <a href="tel:+251900000000">
+              {" "}
+              {/* ← replace with your phone number */}
+              <FiPhone /> {t("contact.phone")}
+            </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/GezishDev"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FiGithub /> {t("contact.github")}
-            </a>
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FiLinkedin /> {t("contact.linkedin")}
             </a>
           </div>
         </div>
