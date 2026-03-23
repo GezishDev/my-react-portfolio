@@ -1,12 +1,13 @@
+import { useTranslation } from "../context/LanguageContext";
 import "../styles/Footer.css";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
   return (
     <footer>
       <div className="container">
-        <p>
-          &copy; {new Date().getFullYear()} Gezahegn Abera. All rights reserved.
-        </p>
+        <p>{t("footer.copyright").replace("{year}", year)}</p>
       </div>
     </footer>
   );

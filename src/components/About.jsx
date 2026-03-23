@@ -1,28 +1,22 @@
+import { useTranslation } from "../context/LanguageContext";
 import aboutImg from "../assets/about.jpg";
 import "../styles/About.css";
 
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="about">
       <div className="container about-container">
         <div className="about-image">
-          <img src={aboutImg} alt="Gezahegn Abera" />
+          <img src={aboutImg} alt={t("about.title")} />
         </div>
         <div className="about-content">
-          <h2>About Me</h2>
-          <p>
-            I am a Computer Science student passionate about web development,
-            networking, and cybersecurity. I enjoy building modern web
-            applications with clean UI/UX and solving real-world problems
-            through technology.
-          </p>
-          <p>
-            Currently, I'm expanding my skills in full-stack development and
-            cloud computing. I love collaborating on open-source projects and
-            continuously learning new technologies.
-          </p>
+          <h2>{t("about.title")}</h2>
+          <p>{t("about.p1")}</p>
+          <p>{t("about.p2")}</p>
           <a href="/resume.pdf" download className="btn primary">
-            Download Resume
+            {t("about.downloadResume")}
           </a>
         </div>
       </div>

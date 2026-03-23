@@ -2,30 +2,32 @@ import { useState } from "react";
 import { FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { useTranslation } from "../context/LanguageContext";
 import "../styles/Certifications.css";
 
 const certifications = [
   {
-    title: "Cisco CCNA Introduction to Networks",
-    issuer: "Cisco",
+    titleKey: "certs.ccna1.title",
+    issuerKey: "certs.ccna.issuer",
     date: "2026",
     image: "/certificates/ccna1.png",
   },
   {
-    title: "Cisco CCNA Enterprise Networking, Security, and Automation",
-    issuer: "Cisco",
+    titleKey: "certs.ccna2.title",
+    issuerKey: "certs.ccna.issuer",
     date: "2026",
     image: "/certificates/ccna.png",
   },
   {
-    title: "Cisco CCNA Switching, Routing, and Wireless Essentials",
-    issuer: "Cisco",
+    titleKey: "certs.ccna3.title",
+    issuerKey: "certs.ccna.issuer",
     date: "2026",
     image: "/certificates/ccna2.png",
   },
 ];
 
 const Certifications = () => {
+  const { t } = useTranslation();
   const [selectedCert, setSelectedCert] = useState(null);
 
   const openModal = (cert) => {
@@ -40,7 +42,7 @@ const Certifications = () => {
   return (
     <section id="certifications">
       <div className="container">
-        <h2 className="section-title">Certifications</h2>
+        <h2 className="section-title">{t("certifications.title")}</h2>
         <div className="certs-grid">
           {certifications.map((cert, index) => (
             <div
@@ -49,12 +51,12 @@ const Certifications = () => {
               onClick={() => openModal(cert)}
             >
               <div className="cert-image">
-                <img src={cert.image} alt={cert.title} loading="lazy" />
+                <img src={cert.image} alt={t(cert.titleKey)} loading="lazy" />
               </div>
               <div className="cert-info">
-                <h3>{cert.title}</h3>
+                <h3>{t(cert.titleKey)}</h3>
                 <p className="cert-meta">
-                  {cert.issuer} • {cert.date}
+                  {t(cert.issuerKey)} • {cert.date}
                 </p>
               </div>
             </div>
@@ -97,7 +99,7 @@ const Certifications = () => {
                     <TransformComponent>
                       <img
                         src={selectedCert.image}
-                        alt={selectedCert.title}
+                        alt={t(selectedCert.titleKey)}
                         className="modal-image"
                       />
                     </TransformComponent>
@@ -108,9 +110,9 @@ const Certifications = () => {
                 <FiX />
               </button>
               <div className="modal-caption">
-                <h3>{selectedCert.title}</h3>
+                <h3>{t(selectedCert.titleKey)}</h3>
                 <p>
-                  {selectedCert.issuer} • {selectedCert.date}
+                  {t(selectedCert.issuerKey)} • {selectedCert.date}
                 </p>
               </div>
             </motion.div>

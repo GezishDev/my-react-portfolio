@@ -5,13 +5,13 @@ import {
   FaReact,
   FaNodeJs,
   FaPhp,
-  FaDatabase,
   FaGitAlt,
   FaGithub,
   FaFigma,
+  FaShieldAlt,
 } from "react-icons/fa";
 import { SiMongodb, SiMysql, SiCisco } from "react-icons/si";
-import { FaShieldAlt } from "react-icons/fa";
+import { useTranslation } from "../context/LanguageContext";
 import "../styles/Skills.css";
 
 const skillsData = {
@@ -42,21 +42,32 @@ const skillsData = {
   ],
 };
 
+// Category titles translation keys
+const categoryKeys = {
+  frontend: "skills.frontend",
+  backend: "skills.backend",
+  database: "skills.database",
+  networking: "skills.networking",
+  tools: "skills.tools",
+};
+
 const SkillCard = ({ skill }) => (
   <div className="skill-card">
     <div className="skill-icon">{skill.icon}</div>
-    <span>{skill.name}</span>
+    <span>{skill.name}</span> {/* skill.name remains English */}
   </div>
 );
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="skills">
       <div className="container">
-        <h2 className="section-title">Skills</h2>
+        <h2 className="section-title">{t("skills.title")}</h2>
         {Object.entries(skillsData).map(([category, skills]) => (
           <div key={category} className="skill-category">
-            <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+            <h3>{t(categoryKeys[category])}</h3>
             <div className="skills-grid">
               {skills.map((skill) => (
                 <SkillCard key={skill.name} skill={skill} />

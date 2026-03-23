@@ -1,42 +1,54 @@
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { useTranslation } from "../context/LanguageContext";
 import "../styles/Projects.css";
 
 const projects = [
   {
-    title: "E-Commerce Website",
-    description:
-      "A full-stack e-commerce platform with product management and secure authentication.",
+    titleKey: "projects.ecommerce.title",
+    descKey: "projects.ecommerce.desc",
     tech: ["React", "Node.js", "MongoDB"],
-    image: "/project1.jpg",
+    image: "/project1.jpg", // replace with actual path
     live: "https://example.com",
     github: "https://github.com/yourusername/project1",
   },
   {
-    title: "Chat Application",
-    description:
-      "Real-time chat app with rooms, private messaging, and file sharing.",
+    titleKey: "projects.chat.title",
+    descKey: "projects.chat.desc",
     tech: ["React", "Socket.io", "Express"],
     image: "/project2.jpg",
     live: "https://example.com",
     github: "https://github.com/yourusername/project2",
   },
-  // Add more projects
+  {
+    titleKey: "projects.dashboard.title",
+    descKey: "projects.dashboard.desc",
+    tech: ["React", "Node.js", "MongoDB", "Chart.js"],
+    image: "/project3.jpg",
+    live: "https://example.com",
+    github: "https://github.com/yourusername/project3",
+  },
 ];
 
 const Projects = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="projects">
       <div className="container">
-        <h2 className="section-title">Projects</h2>
+        <h2 className="section-title">{t("projects.title")}</h2>
         <div className="projects-grid">
           {projects.map((project, index) => (
             <div className="project-card" data-aos="fade-up" key={index}>
               <div className="project-image">
-                <img src={project.image} alt={project.title} />
+                <img
+                  src={project.image}
+                  alt={t(project.titleKey)}
+                  loading="lazy"
+                />
               </div>
               <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <h3>{t(project.titleKey)}</h3>
+                <p>{t(project.descKey)}</p>
                 <div className="project-tech">
                   {project.tech.map((tech) => (
                     <span key={tech}>{tech}</span>
@@ -48,14 +60,14 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FiGithub /> Code
+                    <FiGithub /> {t("projects.viewCode")}
                   </a>
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FiExternalLink /> Live Demo
+                    <FiExternalLink /> {t("projects.liveDemo")}
                   </a>
                 </div>
               </div>

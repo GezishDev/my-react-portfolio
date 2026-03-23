@@ -1,49 +1,47 @@
 import { ReactTyped } from "react-typed";
 import { FiDownload, FiMail } from "react-icons/fi";
-import { useState } from "react";
-import profileImg from "../assets/profile.jpg"; // replace with your image
+import { useTranslation } from "../context/LanguageContext";
+import profileImg from "../assets/profile.jpg";
 import "../styles/Hero.css";
 
 const Hero = () => {
-  const [activeButton, setActiveButton] = useState('projects');
+  const { t, language } = useTranslation();
 
   return (
     <section id="home" className="hero">
       <div className="container hero-container">
         <div className="hero-content">
-          <h1>Gezahegn Abera</h1>
+          <h1>{t("hero.name")}</h1>
           <div className="hero-title">
             <ReactTyped
+              key={language} // forces re-typing when language changes
               strings={[
-                "Frontend Developer",
-                "React Developer",
-                "Flutter Developer",
-                "Network Engineer",
-                "CS Student",
+                t("hero.title1"),
+                t("hero.title2"),
+                t("hero.title3"),
+                t("hero.title4"),
+                t("hero.title5"),
               ]}
               typeSpeed={60}
               backSpeed={40}
               loop
             />
           </div>
-          <p className="hero-description">
-            I build responsive web applications and modern digital experiences
-            using React, JavaScript, Flutter and modern web technologies.
-          </p>
+          <p className="hero-description">{t("hero.description")}</p>
           <div className="hero-buttons">
-            <a href="#projects" className={`btn ${activeButton === 'projects' ? 'primary' : 'outline'}`} onClick={() => setActiveButton('projects')}>
-              View Projects
+            <a href="#projects" className="btn primary">
+              {t("hero.viewProjects")}
             </a>
-            <a href="/resume.pdf" download className={`btn ${activeButton === 'cv' ? 'primary' : 'outline'}`} onClick={() => setActiveButton('cv')}>
-              <FiDownload /> Download CV
+            <a href="/resume.pdf" download className="btn outline">
+              <FiDownload /> {t("hero.downloadCV")}
             </a>
-            <a href="#contact" className={`btn ${activeButton === 'contact' ? 'primary' : 'outline'}`} onClick={() => setActiveButton('contact')}>
-              <FiMail /> Contact Me
+            <a href="#contact" className="btn outline">
+              <FiMail /> {t("hero.contactMe")}
             </a>
           </div>
         </div>
         <div className="hero-image">
-          <img src={profileImg} alt="Gezahegn Abera" />
+          <img src={profileImg} alt={t("hero.name")} />
         </div>
       </div>
     </section>

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
+import { useTranslation } from "../context/LanguageContext";
 import "../styles/Contact.css";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +20,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus("sending");
     // Replace with your Formspree endpoint
-    const res = await fetch("https://formspree.io/f/mwvrbogj", {
+    const res = await fetch("https://formspree.io/f/your-endpoint", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -35,29 +37,34 @@ const Contact = () => {
     <section id="contact">
       <div className="container contact-container">
         <div className="contact-info">
-          <h2>Let's Connect</h2>
-          <p>
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities.
-          </p>
+          <h2>{t("contact.title")}</h2>
+          <p>{t("contact.description")}</p>
           <div className="contact-details">
-            <a href="mailto:gezahegnaberamegenasa@gmail.com">
-              <FiMail /> email
+            <a href="mailto:gezahegn@example.com">
+              <FiMail /> {t("contact.email")}
             </a>
-            <a href="https://github.com/Gezish-Webs" target="_blank">
-              <FiGithub /> github
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiGithub /> {t("contact.github")}
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank">
-              <FiLinkedin /> LinkedIn
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiLinkedin /> {t("contact.linkedin")}
             </a>
           </div>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
-          <h3>Send a Message</h3>
+          <h3>{t("contact.sendMessage")}</h3>
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder={t("contact.namePlaceholder")}
             value={formData.name}
             onChange={handleChange}
             required
@@ -65,7 +72,7 @@ const Contact = () => {
           <input
             type="email"
             name="email"
-            placeholder="Your Email"
+            placeholder={t("contact.emailPlaceholder")}
             value={formData.email}
             onChange={handleChange}
             required
@@ -73,7 +80,7 @@ const Contact = () => {
           <textarea
             name="message"
             rows="5"
-            placeholder="Your Message"
+            placeholder={t("contact.messagePlaceholder")}
             value={formData.message}
             onChange={handleChange}
             required
@@ -83,10 +90,12 @@ const Contact = () => {
             className="btn primary"
             disabled={status === "sending"}
           >
-            {status === "sending" ? "Sending..." : "Send Message"}
+            {status === "sending" ? t("contact.sending") : t("contact.send")}
           </button>
-          {status === "success" && <p className="success">Message sent!</p>}
-          {status === "error" && <p className="error">Oops! Try again.</p>}
+          {status === "success" && (
+            <p className="success">{t("contact.success")}</p>
+          )}
+          {status === "error" && <p className="error">{t("contact.error")}</p>}
         </form>
       </div>
     </section>
