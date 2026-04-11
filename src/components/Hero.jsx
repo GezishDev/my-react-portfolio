@@ -18,7 +18,6 @@ const Hero = () => {
               strings={[
                 t("hero.title1"),
                 t("hero.title2"),
-                t("hero.title3"),
                 t("hero.title4"),
                 t("hero.title5"),
               ]}
