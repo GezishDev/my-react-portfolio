@@ -20,7 +20,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus("sending");
     // Replace with your Formspree endpoint
-    const res = await fetch("https://formspree.io/f/your-endpoint", {
+    const res = await fetch("https://formspree.io/f/mwvrbogj", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
