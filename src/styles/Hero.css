@@ -30,6 +30,18 @@
 .hero-content {
   display: flex;
   flex-direction: column;
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-header-meta {
@@ -152,11 +164,23 @@
   border-radius: var(--radius-lg);
   padding: 0.875rem;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-  transition: border-color var(--transition-normal);
+  transition: all var(--transition-normal);
+  animation: heroCardFloat 6s ease-in-out infinite, heroFadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  position: relative;
+}
+
+@keyframes heroCardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .hero-media-card:hover {
   border-color: var(--border-accent);
+  box-shadow: 0 20px 48px var(--accent-violet-glow);
 }
 
 .hero-media-inner {
