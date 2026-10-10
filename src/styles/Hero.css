@@ -96,6 +96,24 @@
   -webkit-text-fill-color: transparent;
 }
 
+.typed-container {
+  display: inline-block;
+  min-width: 220px;
+}
+
+.typed-cursor {
+  color: var(--accent-violet);
+  -webkit-text-fill-color: var(--accent-violet);
+  font-weight: 300;
+  opacity: 1;
+  animation: typedBlink 0.7s infinite;
+}
+
+@keyframes typedBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .hero-support {
   font-size: 1.0625rem;
   color: var(--text-secondary);

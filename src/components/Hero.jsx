@@ -1,10 +1,17 @@
 import { FiArrowRight, FiDownload, FiMail } from "react-icons/fi";
+import { ReactTyped } from "react-typed";
 import { useTranslation } from "../context/LanguageContext";
 import profileImg from "../assets/profile.jpg";
 import "../styles/Hero.css";
 
 const Hero = () => {
   const { t } = useTranslation();
+
+  const typedStrings = [
+    t("hero.typed_1"),
+    t("hero.typed_2"),
+    t("hero.typed_3"),
+  ];
 
   return (
     <section id="home" className="hero-section">
@@ -21,10 +28,19 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline with rotating typed keyword */}
           <h1 className="hero-headline">
             {t("hero.headline_part1")}{" "}
-            <span className="highlight-text">{t("hero.headline_part2")}</span>
+            <span className="highlight-text typed-container">
+              <ReactTyped
+                key={typedStrings.join("-")}
+                strings={typedStrings}
+                typeSpeed={60}
+                backSpeed={40}
+                backDelay={2000}
+                loop
+              />
+            </span>
           </h1>
 
           {/* Support Narrative */}
