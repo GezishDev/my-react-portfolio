@@ -30,16 +30,18 @@ const Hero = () => {
 
           {/* Headline with rotating typed keyword */}
           <h1 className="hero-headline">
-            {t("hero.headline_part1")}{" "}
-            <span className="highlight-text typed-container">
-              <ReactTyped
-                key={typedStrings.join("-")}
-                strings={typedStrings}
-                typeSpeed={60}
-                backSpeed={40}
-                backDelay={2000}
-                loop
-              />
+            <span className="headline-static">{t("hero.headline_part1")}</span>
+            <span className="headline-typed-row">
+              <span className="highlight-text typed-container">
+                <ReactTyped
+                  key={typedStrings.join("-")}
+                  strings={typedStrings}
+                  typeSpeed={60}
+                  backSpeed={40}
+                  backDelay={2000}
+                  loop
+                />
+              </span>
             </span>
           </h1>
 
