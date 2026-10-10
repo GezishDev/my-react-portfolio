@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useContext } from "react";
 
 const LanguageContext = createContext();
@@ -15,10 +16,20 @@ import am from "../locales/am.json";
 const translations = { en, om, am };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem("portfolio_lang") || "en";
+  });
 
-  const t = (key) => translations[language]?.[key] || key;
-  const changeLanguage = (lang) => translations[lang] && setLanguage(lang);
+  const t = (key) => {
+    return translations[language]?.[key] || translations["en"]?.[key] || key;
+  };
+
+  const changeLanguage = (lang) => {
+    if (translations[lang]) {
+      setLanguage(lang);
+      localStorage.setItem("portfolio_lang", lang);
+    }
+  };
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage, t }}>
@@ -29,7 +40,8 @@ export const LanguageProvider = ({ children }) => {
 
 export const useTranslation = () => {
   const context = useContext(LanguageContext);
-  if (!context)
+  if (!context) {
     throw new Error("useTranslation must be used within LanguageProvider");
+  }
   return context;
 };

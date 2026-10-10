@@ -1,0 +1,84 @@
+/* Security Section Styling */
+.security-section {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.security-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .security-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.security-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.security-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-violet-soft);
+  color: var(--accent-violet);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.security-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.security-card-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Truthfulness Callout Box */
+.security-disclaimer {
+  padding: 1.5rem 1.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.disclaimer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.disclaimer-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.disclaimer-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.disclaimer-text strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}

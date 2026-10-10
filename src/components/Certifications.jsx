@@ -1,124 +1,229 @@
 import { useState } from "react";
-import { FiX } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { FiExternalLink, FiChevronDown, FiChevronUp, FiAward } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Certifications.css";
 
-const certifications = [
+const verifiedCoursework = [
+  // Top 4 Featured Row
   {
-    titleKey: "certs.ccna1.title",
-    issuerKey: "certs.ccna.issuer",
-    date: "2026",
-    image: "/certificates/ccna1.png",
+    id: "cisco-cybersec",
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-intro-cybersecurity.pdf",
+    isPdf: true,
+    featured: true,
   },
   {
-    titleKey: "certs.ccna2.title",
-    issuerKey: "certs.ccna.issuer",
-    date: "2026",
-    image: "/certificates/ccna.png",
+    id: "cisco-enterprise-net",
+    title: "Enterprise Networking, Security, and Automation",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-ccna-enterprise-networking.png",
+    isPdf: false,
+    featured: true,
   },
   {
-    titleKey: "certs.ccna3.title",
-    issuerKey: "certs.ccna.issuer",
-    date: "2026",
-    image: "/certificates/ccna2.png",
+    id: "cisco-python-1",
+    title: "Python Essentials 1",
+    issuer: "Cisco / Python Institute",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-python-essentials-1.pdf",
+    isPdf: true,
+    featured: true,
+  },
+  {
+    id: "ibm-data-lit",
+    title: "IBM Data Literacy",
+    issuer: "IBM",
+    designation: "Badge",
+    fileLink: "/certs/ai-literacy-badge.pdf",
+    isPdf: true,
+    featured: true,
+  },
+  // Additional Coursework in Expander
+  {
+    id: "cisco-intro-net",
+    title: "Introduction to Networks",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-ccna-intro-networks.png",
+    isPdf: false,
+    featured: false,
+  },
+  {
+    id: "cisco-switching-routing",
+    title: "Switching, Routing and Wireless Essentials",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-ccna-switching-routing.png",
+    isPdf: false,
+    featured: false,
+  },
+  {
+    id: "cisco-os-basics",
+    title: "Operating Systems Basics",
+    issuer: "Cisco / NDG",
+    designation: "Coursework",
+    fileLink: "/certs/cisco-operating-systems-basics.pdf",
+    isPdf: true,
+    featured: false,
+  },
+  {
+    id: "cisco-hardware",
+    title: "Computer Hardware Basics",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: null,
+    isPdf: false,
+    featured: false,
+  },
+  {
+    id: "cisco-english-it",
+    title: "English for IT 1",
+    issuer: "Cisco Networking Academy",
+    designation: "Coursework",
+    fileLink: null,
+    isPdf: false,
+    featured: false,
+  },
+  {
+    id: "ibm-design",
+    title: "IBM Design",
+    issuer: "IBM",
+    designation: "Badge",
+    fileLink: null,
+    isPdf: false,
+    featured: false,
+  },
+  {
+    id: "ai-safari",
+    title: "AI Safari",
+    issuer: null, // Issuer unknown: show title only, no issuer
+    designation: "Certificate",
+    fileLink: "/certs/ai-safari.pdf",
+    isPdf: true,
+    featured: false,
   },
 ];
 
 const Certifications = () => {
   const { t } = useTranslation();
-  const [selectedCert, setSelectedCert] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
-  const openModal = (cert) => {
-    setSelectedCert(cert);
-    document.body.classList.add("modal-open");
-  };
-  const closeModal = () => {
-    setSelectedCert(null);
-    document.body.classList.remove("modal-open");
-  };
+  const featuredList = verifiedCoursework.filter((item) => item.featured);
+  const remainingList = verifiedCoursework.filter((item) => !item.featured);
 
   return (
-    <section id="certifications">
+    <section id="certifications" className="certs-section">
       <div className="container">
-        <h2 className="section-title">{t("certifications.title")}</h2>
+        <header className="section-header">
+          <span className="section-eyebrow">{t("certs.eyebrow")}</span>
+          <h2 className="section-title">{t("certs.title")}</h2>
+          <p className="section-description">{t("certs.description")}</p>
+        </header>
+
+        {/* Featured Row (4 Items) */}
         <div className="certs-grid">
-          {certifications.map((cert, index) => (
-            <div
-              className="cert-card"
-              key={index}
-              onClick={() => openModal(cert)}
-            >
-              <div className="cert-image">
-                <img src={cert.image} alt={t(cert.titleKey)} loading="lazy" />
+          {featuredList.map((item) => (
+            <article key={item.id} className="cert-card card">
+              <div className="cert-top-bar">
+                <span className="status-chip coursework">
+                  {item.designation}
+                </span>
+                <span className="cert-icon-decor">
+                  <FiAward aria-hidden="true" />
+                </span>
               </div>
-              <div className="cert-info">
-                <h3>{t(cert.titleKey)}</h3>
-                <p className="cert-meta">
-                  {t(cert.issuerKey)} • {cert.date}
-                </p>
+              <h3 className="cert-name">{item.title}</h3>
+              {item.issuer && <p className="cert-issuer">{item.issuer}</p>}
+              <div className="cert-footer">
+                {item.fileLink ? (
+                  <a
+                    href={item.fileLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cert-doc-link"
+                    aria-label={`View document for ${item.title}`}
+                  >
+                    <span>{t("certs.view_cert")}</span>
+                    <FiExternalLink aria-hidden="true" />
+                  </a>
+                ) : (
+                  <span className="cert-doc-status" style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                    {t("certs.completed")}
+                  </span>
+                )}
               </div>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
 
-      {/* Modal with pinch-to-zoom */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            className="modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
-            <motion.div
-              className="modal-content zoom-modal"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
+        {/* Accessible Expander for Additional Coursework */}
+        {remainingList.length > 0 && (
+          <div className="certs-expander-wrapper">
+            <button
+              type="button"
+              className="btn btn-secondary expander-btn"
+              onClick={() => setShowAll(!showAll)}
+              aria-expanded={showAll}
+              aria-controls="additional-coursework-grid"
             >
-              <TransformWrapper
-                initialScale={1}
-                minScale={0.5}
-                maxScale={3}
-                centerOnInit
-                wheel={{ step: 0.1 }}
-                pinch={{ step: 0.1 }}
-              >
-                {({ zoomIn, zoomOut, resetTransform }) => (
-                  <>
-                    <div className="zoom-controls">
-                      <button onClick={() => zoomIn()}>+</button>
-                      <button onClick={() => zoomOut()}>-</button>
-                      <button onClick={() => resetTransform()}>⟲</button>
+              <span>
+                {showAll
+                  ? t("certs.show_fewer")
+                  : `${t("certs.show_all")} (+${remainingList.length})`}
+              </span>
+              {showAll ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+            </button>
+
+            {showAll && (
+              <div id="additional-coursework-grid" className="certs-grid expanded-grid">
+                {remainingList.map((item) => (
+                  <article key={item.id} className="cert-card card">
+                    <div className="cert-top-bar">
+                      <span className="status-chip coursework">
+                        {item.designation}
+                      </span>
+                      <span className="cert-icon-decor">
+                        <FiAward aria-hidden="true" />
+                      </span>
                     </div>
-                    <TransformComponent>
-                      <img
-                        src={selectedCert.image}
-                        alt={t(selectedCert.titleKey)}
-                        className="modal-image"
-                      />
-                    </TransformComponent>
-                  </>
-                )}
-              </TransformWrapper>
-              <button className="modal-close" onClick={closeModal}>
-                <FiX />
-              </button>
-              <div className="modal-caption">
-                <h3>{t(selectedCert.titleKey)}</h3>
-                <p>
-                  {t(selectedCert.issuerKey)} • {selectedCert.date}
-                </p>
+                    <h3 className="cert-name">{item.title}</h3>
+                    {item.issuer && <p className="cert-issuer">{item.issuer}</p>}
+                    <div className="cert-footer">
+                      {item.fileLink ? (
+                        <a
+                          href={item.fileLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="cert-doc-link"
+                          aria-label={`View document for ${item.title}`}
+                        >
+                          <span>{t("certs.view_cert")}</span>
+                          <FiExternalLink aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <span className="cert-doc-status" style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                          {t("certs.completed")}
+                        </span>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
-            </motion.div>
-          </motion.div>
+            )}
+          </div>
         )}
-      </AnimatePresence>
+
+        {/* Verification Note */}
+        <div className="certs-truth-note">
+          <p>
+            All listed credentials map to clean, verified files in <code>/public/certs/</code>.
+            Detailed registry maintained in <a href="/CERTS.md" target="_blank" rel="noopener noreferrer">CERTS.md</a>.
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

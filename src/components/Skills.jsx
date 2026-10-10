@@ -1,80 +1,152 @@
 import {
-  FaHtml5,
-  FaCss3Alt,
   FaJs,
   FaReact,
-  FaNodeJs,
+  FaHtml5,
+  FaPython,
   FaPhp,
-  FaGitAlt,
+  FaNodeJs,
   FaGithub,
-  FaFigma,
+  FaDocker,
+  FaLinux,
   FaShieldAlt,
 } from "react-icons/fa";
-import { SiMongodb, SiMysql, SiCisco } from "react-icons/si";
+import {
+  SiTypescript,
+  SiTailwindcss,
+  SiBootstrap,
+  SiFastapi,
+  SiPostgresql,
+  SiMongodb,
+  SiMariadb,
+  SiFlutter,
+  SiDart,
+} from "react-icons/si";
+import { FiLayers, FiShield } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Skills.css";
 
-const skillsData = {
-  frontend: [
-    { name: "HTML", icon: <FaHtml5 /> },
-    { name: "CSS", icon: <FaCss3Alt /> },
-    { name: "JavaScript", icon: <FaJs /> },
-    { name: "React", icon: <FaReact /> },
-    { name: "Bootstrap", icon: <FaCss3Alt /> }, // placeholder
-  ],
-  backend: [
-    { name: "Node.js", icon: <FaNodeJs /> },
-    { name: "PHP", icon: <FaPhp /> },
-  ],
-  database: [
-    { name: "MongoDB", icon: <SiMongodb /> },
-    { name: "MySQL", icon: <SiMysql /> },
-  ],
-  networking: [
-    { name: "CCNA", icon: <SiCisco /> },
-    { name: "Cybersecurity", icon: <FaShieldAlt /> },
-  ],
-  tools: [
-    { name: "Git", icon: <FaGitAlt /> },
-    { name: "GitHub", icon: <FaGithub /> },
-    { name: "Figma", icon: <FaFigma /> },
-    { name: "VS Code", icon: <FaReact /> }, // placeholder
-  ],
-};
+const skillCategories = [
+  {
+    category: "Frontend",
+    description: "Component architecture, responsive layouts, and typed client state.",
+    skills: [
+      { name: "JavaScript", icon: <FaJs aria-hidden="true" /> },
+      { name: "TypeScript", icon: <SiTypescript aria-hidden="true" /> },
+      { name: "React", icon: <FaReact aria-hidden="true" /> },
+      { name: "Next.js", icon: <FiLayers aria-hidden="true" /> },
+      { name: "HTML / CSS", icon: <FaHtml5 aria-hidden="true" /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss aria-hidden="true" /> },
+      { name: "Bootstrap", icon: <SiBootstrap aria-hidden="true" /> },
+    ],
+  },
+  {
+    category: "Backend & APIs",
+    description: "Server routing, API integration, token authentication, and background logic.",
+    skills: [
+      { name: "Node.js / Express", icon: <FaNodeJs aria-hidden="true" /> },
+      { name: "Python / FastAPI", icon: <SiFastapi aria-hidden="true" /> },
+      { name: "PHP", icon: <FaPhp aria-hidden="true" /> },
+      { name: "REST Integration", icon: <FiLayers aria-hidden="true" /> },
+      { name: "JWT", icon: <FiShield aria-hidden="true" /> },
+    ],
+  },
+  {
+    category: "Databases",
+    description: "Relational table schemas, queries, and document storage.",
+    skills: [
+      { name: "PostgreSQL", icon: <SiPostgresql aria-hidden="true" /> },
+      { name: "MongoDB", icon: <SiMongodb aria-hidden="true" /> },
+      { name: "MariaDB", icon: <SiMariadb aria-hidden="true" /> },
+    ],
+  },
+  {
+    category: "Tools & Systems",
+    description: "Version control, containerization, deployment platforms, and Linux systems.",
+    skills: [
+      { name: "Git / GitHub", icon: <FaGithub aria-hidden="true" /> },
+      { name: "Docker", icon: <FaDocker aria-hidden="true" /> },
+      { name: "Linux", icon: <FaLinux aria-hidden="true" /> },
+      { name: "Vercel", icon: <FiLayers aria-hidden="true" /> },
+    ],
+  },
+];
 
-// Category titles translation keys
-const categoryKeys = {
-  frontend: "skills.frontend",
-  backend: "skills.backend",
-  database: "skills.database",
-  networking: "skills.networking",
-  tools: "skills.tools",
-};
-
-const SkillCard = ({ skill }) => (
-  <div className="skill-card">
-    <div className="skill-icon">{skill.icon}</div>
-    <span>{skill.name}</span> {/* skill.name remains English */}
-  </div>
-);
+const learningSkills = [
+  {
+    name: "Flutter & Dart",
+    focus: "Cross-platform mobile development (early learning only; active study).",
+    icon: <SiFlutter aria-hidden="true" />,
+    secondaryIcon: <SiDart aria-hidden="true" />,
+  },
+  {
+    name: "Application Security Fundamentals",
+    focus: "Defensive web coding, authentication/authorization hardening, and API security (personal direction only; no audits or commercial claims).",
+    icon: <FaShieldAlt aria-hidden="true" />,
+  },
+];
 
 const Skills = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="skills">
+    <section id="skills" className="skills-section">
       <div className="container">
-        <h2 className="section-title">{t("skills.title")}</h2>
-        {Object.entries(skillsData).map(([category, skills]) => (
-          <div key={category} className="skill-category">
-            <h3>{t(categoryKeys[category])}</h3>
-            <div className="skills-grid">
-              {skills.map((skill) => (
-                <SkillCard key={skill.name} skill={skill} />
-              ))}
+        <header className="section-header">
+          <span className="section-eyebrow">{t("skills.eyebrow")}</span>
+          <h2 className="section-title">{t("skills.title")}</h2>
+          <p className="section-description">{t("skills.description")}</p>
+        </header>
+
+        {/* Core Confident Skills Grid */}
+        <div className="skills-category-grid">
+          {skillCategories.map((cat) => (
+            <div key={cat.category} className="skills-cat-card card">
+              <div className="cat-card-header">
+                <h3 className="cat-title">{cat.category}</h3>
+                <p className="cat-desc">{cat.description}</p>
+              </div>
+              <ul className="skills-pill-list" aria-label={`Skills in ${cat.category}`}>
+                {cat.skills.map((skill) => (
+                  <li key={skill.name} className="skill-pill">
+                    <span className="skill-icon">{skill.icon}</span>
+                    <span className="skill-name">{skill.name}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
+        </div>
+
+        {/* Currently Learning Section */}
+        <div className="learning-banner card">
+          <div className="learning-header">
+            <div className="learning-badge">
+              <span className="status-chip learning">
+                <span className="status-dot"></span>
+                {t("skills.learning_status")}
+              </span>
+            </div>
+            <h3 className="learning-title">{t("skills.learning_title")}</h3>
+            <p className="learning-sub">{t("skills.learning_sub")}</p>
           </div>
-        ))}
+
+          <div className="learning-grid">
+            {learningSkills.map((item) => (
+              <div key={item.name} className="learning-item">
+                <div className="learning-item-icon">
+                  {item.icon}
+                  {item.secondaryIcon && (
+                    <span className="secondary-icon">{item.secondaryIcon}</span>
+                  )}
+                </div>
+                <div className="learning-item-content">
+                  <h4 className="learning-item-name">{item.name}</h4>
+                  <p className="learning-item-focus">{item.focus}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
