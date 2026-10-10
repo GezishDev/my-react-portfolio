@@ -28,10 +28,10 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* Headline with rotating typed keyword */}
+          {/* Headline with rotating typed keyword inline */}
           <h1 className="hero-headline">
-            <span className="headline-static">{t("hero.headline_part1")}</span>
-            <span className="headline-typed-row">
+            <span>{t("hero.headline_part1")} </span>
+            <span className="typed-inline-wrapper">
               <span className="highlight-text typed-container">
                 <ReactTyped
                   key={typedStrings.join("-")}

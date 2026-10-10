@@ -62,13 +62,11 @@
 }
 
 .hero-headline {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: block;
   font-family: var(--font-display);
-  font-size: 2.25rem;
+  font-size: 2.125rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.03em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
@@ -76,23 +74,19 @@
 
 @media (min-width: 640px) {
   .hero-headline {
-    font-size: 2.85rem;
+    font-size: 2.65rem;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-headline {
-    font-size: 3.25rem;
+    font-size: 3rem;
   }
 }
 
-.headline-static {
-  display: block;
-}
-
-.headline-typed-row {
-  display: block;
-  min-height: 1.3em;
+.typed-inline-wrapper {
+  display: inline;
+  white-space: nowrap;
 }
 
 .highlight-text {
@@ -109,7 +103,7 @@
 }
 
 .typed-container {
-  display: inline-block;
+  display: inline;
   white-space: nowrap;
 }
 
