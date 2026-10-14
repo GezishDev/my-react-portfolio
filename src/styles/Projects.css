@@ -583,6 +583,14 @@ body.light .project-modal-container {
   color: #FFFFFF;
 }
 
+.modal-btn-github {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .project-modal-container {

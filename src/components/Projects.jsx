@@ -8,6 +8,7 @@ import {
   FiCpu,
   FiBookOpen,
   FiMaximize2,
+  FiGithub,
 } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Projects.css";
@@ -116,18 +117,19 @@ class LogLifecycleManager {
     subtitle: "Community Recipe Discovery & Publishing Platform",
     role: "Frontend Developer",
     status: "live",
-    statusText: "Project Repository",
-    liveUrl: "https://github.com/GezishDev/Recipe-Sharing-App",
+    statusText: "Live Platform",
+    liveUrl: "https://recipe-sharing-app-swart-six.vercel.app/",
+    githubUrl: "https://github.com/GezishDev/Recipe-Sharing-App",
     image: "/Recipe_sharing_app_homepage.png",
     altText: "Recipe Sharing App homepage interface",
     problem:
       "Creating an intuitive interface for browsing, discovering, and sharing community culinary recipes with responsive search.",
     contribution:
-      "Built client-side interface components using React, Tailwind CSS, and client state management.",
+      "Built client-side interface components using React, Tailwind CSS, Firebase backend services, and client state management.",
     keyDecisions:
-      "Responsive card grid optimized for mobile and desktop viewing.",
-    stack: ["React", "Tailwind CSS", "JavaScript"],
-    learned: "Component composition and responsive grid architectures.",
+      "Responsive card grid optimized for mobile and desktop viewing with real-time Firebase integration.",
+    stack: ["React", "Firebase", "Tailwind CSS", "JavaScript"],
+    learned: "Component composition, Firebase real-time integration, and responsive grid architectures.",
   },
   {
     id: "pharmacy-system",
@@ -459,6 +461,18 @@ const Projects = () => {
               >
                 <span>{t("projects.close_modal")}</span>
               </button>
+              {selectedProject.githubUrl && selectedProject.githubUrl !== selectedProject.liveUrl && (
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary modal-btn-github"
+                  aria-label={`View GitHub repository for ${selectedProject.title}`}
+                >
+                  <FiGithub aria-hidden="true" />
+                  <span>GitHub</span>
+                </a>
+              )}
               {selectedProject.liveUrl && (
                 <a
                   href={selectedProject.liveUrl}
