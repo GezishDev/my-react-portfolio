@@ -56,10 +56,10 @@ const Hero = () => {
   const mouseY = useMotionValue(0);
 
   const springConfig = { damping: 24, stiffness: 220, mass: 0.4 };
-  const rotateX = useSpring(useTransform(mouseY, [-130, 130], [6, -6]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-130, 130], [-6, 6]), springConfig);
-  const glareX = useTransform(mouseX, [-130, 130], [20, 80]);
-  const glareY = useTransform(mouseY, [-130, 130], [20, 80]);
+  const rawRotateX = useTransform(mouseY, [-130, 130], [6, -6]);
+  const rawRotateY = useTransform(mouseX, [-130, 130], [-6, 6]);
+  const rotateX = useSpring(rawRotateX, springConfig);
+  const rotateY = useSpring(rawRotateY, springConfig);
 
   const handleMouseMove = (e) => {
     if (!canHover || prefersReducedMotion || !cardRef.current) return;
@@ -304,20 +304,8 @@ const Hero = () => {
                 : undefined
             }
           >
-            {/* Dynamic Card Glare (Desktop Fine Pointer Only) */}
-            {canHover && !prefersReducedMotion && (
-              <motion.div
-                className="hero-card-glare"
-                style={{
-                  background: useTransform(
-                    [glareX, glareY],
-                    ([gx, gy]) =>
-                      `radial-gradient(circle at ${gx}% ${gy}%, rgba(255, 255, 255, 0.12) 0%, transparent 65%)`
-                  ),
-                }}
-                aria-hidden="true"
-              />
-            )}
+            {/* Card Glare Overlay */}
+            <div className="hero-card-glare" aria-hidden="true" />
 
             {/* Inner Image Container */}
             <div className="hero-media-inner">
@@ -330,7 +318,6 @@ const Hero = () => {
                 loading="eager"
               />
               <div className="hero-avatar-overlay" aria-hidden="true" />
-              <div className="hero-avatar-scanline" aria-hidden="true" />
             </div>
 
             {/* Card Metadata Footer */}
