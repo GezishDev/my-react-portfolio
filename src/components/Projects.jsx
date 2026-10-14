@@ -1,4 +1,14 @@
-import { FiExternalLink, FiTerminal, FiLayers } from "react-icons/fi";
+import { useState, useEffect } from "react";
+import {
+  FiExternalLink,
+  FiTerminal,
+  FiLayers,
+  FiX,
+  FiCheckCircle,
+  FiCpu,
+  FiBookOpen,
+  FiMaximize2,
+} from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Projects.css";
 
@@ -161,6 +171,30 @@ class LogLifecycleManager {
 
 const Projects = () => {
   const { t } = useTranslation();
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const closeModal = () => setSelectedProject(null);
+
+  // Keyboard Escape listener and scroll lock
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    if (selectedProject) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
 
   return (
     <section id="work" className="projects-section">
@@ -174,8 +208,20 @@ const Projects = () => {
         <div className="projects-grid">
           {verifiedProjects.map((project) => (
             <article key={project.id} className="project-card card">
-              {/* Media Container: Real Screenshot or Truthful Architecture Code Snippet */}
-              <div className="project-media-container">
+              {/* Media Container: Clickable Thumbnail / Architecture Code */}
+              <div
+                className="project-media-container clickable-media"
+                onClick={() => setSelectedProject(project)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedProject(project);
+                  }
+                }}
+                aria-label={`Open case study details for ${project.title}`}
+              >
                 {project.image ? (
                   <img
                     src={project.image}
@@ -201,6 +247,15 @@ const Projects = () => {
                     </pre>
                   </div>
                 )}
+
+                {/* Hover overlay hint */}
+                <div className="project-media-hover-overlay" aria-hidden="true">
+                  <span className="hover-overlay-pill">
+                    <FiMaximize2 className="hover-pill-icon" />
+                    <span>{t("projects.view_details")}</span>
+                  </span>
+                </div>
+
                 {/* Status Chip Overlay */}
                 <div className="project-status-badge">
                   <span className={`status-chip ${project.status}`}>
@@ -221,6 +276,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="project-live-link"
                       aria-label={`Visit live site for ${project.title}`}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <span>{t("projects.visit_live")}</span>
                       <FiExternalLink aria-hidden="true" />
@@ -231,27 +287,8 @@ const Projects = () => {
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-subtitle">{project.subtitle}</p>
 
-                {/* Problem & Contribution */}
-                <div className="project-narrative">
-                  <div className="narrative-block">
-                    <span className="narrative-label">{t("projects.label_problem")}</span>
-                    <p className="narrative-text">{project.problem}</p>
-                  </div>
-                  <div className="narrative-block">
-                    <span className="narrative-label">{t("projects.label_contribution")}</span>
-                    <p className="narrative-text">{project.contribution}</p>
-                  </div>
-                  <div className="narrative-block">
-                    <span className="narrative-label">{t("projects.label_decision")}</span>
-                    <p className="narrative-text">{project.keyDecisions}</p>
-                  </div>
-                  {project.learned && (
-                    <div className="narrative-block">
-                      <span className="narrative-label">{t("projects.label_learned")}</span>
-                      <p className="narrative-text">{project.learned}</p>
-                    </div>
-                  )}
-                </div>
+                {/* Concise Impact Teaser */}
+                <p className="project-brief">{project.problem}</p>
 
                 {/* Stack Chips */}
                 <div className="project-stack" aria-label="Technologies used">
@@ -261,11 +298,182 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
+
+                {/* Dedicated Card Action Bar */}
+                <div className="project-card-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-case-study"
+                    onClick={() => setSelectedProject(project)}
+                    aria-label={`View deep-dive case study for ${project.title}`}
+                  >
+                    <FiLayers aria-hidden="true" />
+                    <span>{t("projects.view_details")}</span>
+                  </button>
+
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-live-text-link"
+                      aria-label={`Visit ${project.title}`}
+                    >
+                      <span>{t("projects.visit_live")}</span>
+                      <FiExternalLink aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      {/* Interactive Case Study Pop-Up Modal */}
+      {selectedProject && (
+        <div
+          className="project-modal-backdrop"
+          onClick={closeModal}
+          role="presentation"
+        >
+          <div
+            className="project-modal-container"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-project-title"
+          >
+            {/* Modal Top Bar */}
+            <div className="project-modal-header">
+              <div className="modal-header-meta">
+                <span className="project-role-tag">{selectedProject.role}</span>
+                <span className={`status-chip ${selectedProject.status}`}>
+                  <span className="status-dot"></span>
+                  {selectedProject.statusText}
+                </span>
+              </div>
+              <button
+                type="button"
+                className="modal-close-icon-btn"
+                onClick={closeModal}
+                aria-label={t("projects.close_modal")}
+              >
+                <FiX aria-hidden="true" />
+              </button>
+            </div>
+
+            {/* Modal Title */}
+            <div className="modal-title-bar">
+              <h3 id="modal-project-title" className="modal-project-title">
+                {selectedProject.title}
+              </h3>
+              <p className="modal-project-subtitle">{selectedProject.subtitle}</p>
+            </div>
+
+            {/* Modal Media Showcase */}
+            <div className="modal-media-preview">
+              {selectedProject.image ? (
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.altText}
+                  className="modal-preview-img"
+                />
+              ) : (
+                <div className="project-code-preview modal-code-box">
+                  <div className="preview-terminal-header">
+                    <span className="preview-terminal-dot red"></span>
+                    <span className="preview-terminal-dot amber"></span>
+                    <span className="preview-terminal-dot green"></span>
+                    <span className="preview-terminal-title">
+                      <FiTerminal aria-hidden="true" />
+                      architecture_deep_dive.ts
+                    </span>
+                  </div>
+                  <pre className="preview-code-block">
+                    <code>{selectedProject.codeSnippet}</code>
+                  </pre>
+                </div>
+              )}
+            </div>
+
+            {/* Structured Architectural Narrative */}
+            <div className="modal-narrative-sections">
+              {/* Problem */}
+              <div className="modal-breakdown-card">
+                <div className="breakdown-header">
+                  <FiTerminal className="breakdown-icon" aria-hidden="true" />
+                  <span className="breakdown-label">{t("projects.label_problem")}</span>
+                </div>
+                <p className="breakdown-body">{selectedProject.problem}</p>
+              </div>
+
+              {/* Contribution */}
+              <div className="modal-breakdown-card">
+                <div className="breakdown-header">
+                  <FiCheckCircle className="breakdown-icon" aria-hidden="true" />
+                  <span className="breakdown-label">{t("projects.label_contribution")}</span>
+                </div>
+                <p className="breakdown-body">{selectedProject.contribution}</p>
+              </div>
+
+              {/* Key Technical Decision */}
+              <div className="modal-breakdown-card">
+                <div className="breakdown-header">
+                  <FiCpu className="breakdown-icon" aria-hidden="true" />
+                  <span className="breakdown-label">{t("projects.label_decision")}</span>
+                </div>
+                <p className="breakdown-body">{selectedProject.keyDecisions}</p>
+              </div>
+
+              {/* What I Learned */}
+              {selectedProject.learned && (
+                <div className="modal-breakdown-card">
+                  <div className="breakdown-header">
+                    <FiBookOpen className="breakdown-icon" aria-hidden="true" />
+                    <span className="breakdown-label">{t("projects.label_learned")}</span>
+                  </div>
+                  <p className="breakdown-body">{selectedProject.learned}</p>
+                </div>
+              )}
+
+              {/* Technology Stack Matrix */}
+              <div className="modal-stack-section">
+                <span className="modal-stack-label">TECHNOLOGIES & TOOLING</span>
+                <div className="modal-stack-chips">
+                  {selectedProject.stack.map((tech) => (
+                    <span key={tech} className="tech-chip modal-chip">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Bottom Action Bar */}
+            <div className="modal-footer-actions">
+              <button
+                type="button"
+                className="btn btn-secondary modal-btn-close"
+                onClick={closeModal}
+              >
+                <span>{t("projects.close_modal")}</span>
+              </button>
+              {selectedProject.liveUrl && (
+                <a
+                  href={selectedProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary modal-btn-live"
+                >
+                  <span>{t("projects.visit_live")}</span>
+                  <FiExternalLink aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

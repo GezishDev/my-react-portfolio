@@ -36,6 +36,8 @@
   "projects.label_contribution": "CONTRIBUTION:",
   "projects.label_decision": "KEY DECISION:",
   "projects.label_learned": "WHAT I LEARNED:",
+  "projects.view_details": "Architecture & Details",
+  "projects.close_modal": "Close",
 
   "skills.eyebrow": "// 02. TECHNICAL PROFICIENCIES",
   "skills.title": "Skills & Tooling",
