@@ -89,7 +89,7 @@ async def execute_task(request: AgentTaskRequest, user=Depends(verify_jwt)):
     status: "progress",
     statusText: "In progress. Not fully production-tested.",
     liveUrl: null,
-    image: null,
+    image: "/screenshots/freepbx.png",
     codeSnippet: `// FreePBX Log Retention Routine & Call Center Monitoring
 class LogLifecycleManager {
   public function executeRetentionPolicy(int $daysToKeep): RetentionReport {
@@ -100,7 +100,7 @@ class LogLifecycleManager {
     return $this->generateReport();
   }
 }`,
-    altText: "FreePBX Log Lifecycle Manager architecture snippet",
+    altText: "G2G FreePBX Log Lifecycle Manager dashboard interface",
     problem:
       "Telephony servers running FreePBX/Asterisk generate large call detail records (CDR), logs, and audio recordings, requiring automated retention cleanup and human agent call activity monitoring.",
     contribution:
