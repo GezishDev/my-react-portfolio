@@ -61,7 +61,7 @@ const verifiedProjects = [
     status: "progress",
     statusText: "Runs locally",
     liveUrl: null,
-    image: null,
+    image: "/screenshots/neuraldesk.png",
     codeSnippet: `# FastAPI + LangGraph Multi-Agent Node Scaffolding
 @app.post("/api/v1/agents/execute")
 async def execute_task(request: AgentTaskRequest, user=Depends(verify_jwt)):
@@ -70,7 +70,7 @@ async def execute_task(request: AgentTaskRequest, user=Depends(verify_jwt)):
     graph.add_node("executor", run_tool_pipeline)
     workflow = graph.compile()
     return await workflow.arun({"input": request.prompt})`,
-    altText: "NeuralDesk LangGraph execution node snippet",
+    altText: "NeuralDesk AI agent workspace dashboard interface",
     problem:
       "Executing multi-step automated workflows across agent tools requires structured state preservation, containerized environments, and token-authenticated requests.",
     contribution:
