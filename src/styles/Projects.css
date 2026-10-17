@@ -6,6 +6,9 @@
 .projects-section {
   border-bottom: 1px solid var(--border-subtle);
   position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .projects-grid {
