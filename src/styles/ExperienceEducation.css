@@ -132,3 +132,19 @@
   border-radius: 50%;
   background-color: var(--accent-violet);
 }
+
+@media (max-width: 480px) {
+  .timeline-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timeline-meta-bar {
+    gap: 0.5rem;
+  }
+}

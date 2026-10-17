@@ -155,3 +155,18 @@
   border-color: var(--border-accent);
   background: var(--bg-card);
 }
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 3rem 0 2rem;
+  }
+
+  .footer-container {
+    gap: 2rem;
+  }
+
+  .footer-bottom-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

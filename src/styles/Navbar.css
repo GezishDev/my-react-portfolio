@@ -343,3 +343,43 @@
   font-size: 0.75rem;
   cursor: pointer;
 }
+
+/* Small Mobile Navigation Optimizations */
+@media (max-width: 600px) {
+  .navbar-actions .action-icon-link {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-actions .btn-sm {
+    display: none;
+  }
+
+  .navbar-actions {
+    gap: 0.5rem;
+  }
+
+  .navbar-logo {
+    font-size: 1.05rem;
+  }
+
+  .lang-toggle-btn {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-actions {
+    gap: 0.35rem;
+  }
+
+  .navbar-logo {
+    font-size: 0.95rem;
+  }
+
+  .lang-toggle-btn span {
+    display: none;
+  }
+}

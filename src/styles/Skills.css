@@ -163,3 +163,26 @@
   color: var(--text-secondary);
   line-height: 1.5;
 }
+
+@media (max-width: 480px) {
+  .skills-cat-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .skills-pill-list {
+    gap: 0.45rem;
+  }
+
+  .skill-pill {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .learning-banner {
+    padding: 1.25rem 1rem;
+  }
+
+  .learning-item {
+    padding: 1rem 0.875rem;
+  }
+}

@@ -857,17 +857,22 @@ body.light .hero-float-chip {
   }
 
   .centerpiece-orbit-frame {
-    width: 320px;
-    height: 320px;
+    width: min(320px, 86vw);
+    height: min(320px, 86vw);
   }
 
   /* Inline docked chips to prevent any horizontal overflow on small screens */
   .hero-float-chip {
     position: static;
     width: 100%;
-    max-width: 345px;
+    max-width: min(345px, 100%);
     margin-top: 0.75rem;
     animation: none !important;
+  }
+
+  .float-chip-title,
+  .float-chip-sub {
+    white-space: normal;
   }
 
   .float-chip-top {
@@ -880,7 +885,7 @@ body.light .hero-float-chip {
 
   .hero-media-card {
     order: 2;
-    max-width: 320px;
+    max-width: min(320px, 100%);
   }
 
   .hero-actions {
@@ -899,15 +904,34 @@ body.light .hero-float-chip {
 
 @media (max-width: 480px) {
   .hero-header-meta {
-    gap: 0.625rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
   }
 
   .hero-eyebrow {
     font-size: 0.75rem;
+    line-height: 1.4;
   }
 
   .hero-meta-grid {
-    padding: 1rem;
+    padding: 0.875rem;
+    gap: 0.75rem;
+  }
+
+  .hero-desc {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-actions .btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.8125rem;
   }
 }
 

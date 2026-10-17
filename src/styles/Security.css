@@ -82,3 +82,13 @@
   color: var(--text-secondary);
   font-weight: 600;
 }
+
+@media (max-width: 480px) {
+  .security-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .security-disclaimer {
+    padding: 1.25rem 1rem;
+  }
+}

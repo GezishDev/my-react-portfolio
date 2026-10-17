@@ -148,6 +148,12 @@ body {
   padding: 0 1.25rem;
 }
 
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.875rem;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 0 2rem;
@@ -156,8 +162,14 @@ body {
 
 /* Section Spacing */
 section {
-  padding: 5rem 0;
+  padding: 3.75rem 0;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 5rem 0;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -168,7 +180,13 @@ section {
 
 /* Section Headers */
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .section-header {
+    margin-bottom: 3rem;
+  }
 }
 
 .section-eyebrow {
@@ -186,12 +204,13 @@ section {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: clamp(1.625rem, 5.5vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
+  word-break: break-word;
 }
 
 @media (min-width: 768px) {

@@ -150,3 +150,17 @@
   font-weight: 600;
   color: var(--text-primary);
 }
+
+@media (max-width: 480px) {
+  .about-text-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .principle-card {
+    padding: 1rem 0.875rem;
+  }
+
+  .about-image-card {
+    padding: 0.625rem;
+  }
+}

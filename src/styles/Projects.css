@@ -606,15 +606,18 @@ body.light .project-modal-container {
   .modal-footer-actions {
     flex-direction: column;
     width: 100%;
+    gap: 0.625rem;
   }
 
   .modal-footer-actions .btn {
     width: 100%;
+    justify-content: center;
   }
 
   .project-card-footer {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.625rem;
   }
 
   .btn-case-study {
@@ -624,5 +627,56 @@ body.light .project-modal-container {
 
   .btn-live-text-link {
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-body {
+    padding: 1.25rem 1rem;
+  }
+
+  .project-meta-top {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project-title {
+    font-size: 1.1875rem;
+  }
+
+  .project-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .project-brief {
+    font-size: 0.8125rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-modal-backdrop {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .project-modal-container {
+    padding: 1rem 0.875rem;
+    max-height: 94vh;
+    gap: 1rem;
+  }
+
+  .modal-project-title {
+    font-size: 1.1875rem;
+    word-break: break-word;
+  }
+
+  .modal-project-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .modal-breakdown-card {
+    padding: 0.875rem;
+  }
+
+  .breakdown-body {
+    font-size: 0.8125rem;
   }
 }

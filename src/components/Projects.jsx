@@ -150,25 +150,6 @@ class LogLifecycleManager {
     stack: ["PHP", "MySQL", "Bootstrap", "HTML/CSS"],
     learned: "CRUD workflows and tabular relational data interfaces.",
   },
-  {
-    id: "feven-makeup",
-    title: "Feven Makeup Store",
-    subtitle: "Cosmetics & Beauty Product Catalog",
-    role: "Frontend Developer",
-    status: "live",
-    statusText: "Project Repository",
-    liveUrl: "https://github.com/GezishDev/feven-makeup-store",
-    image: "/Home.png",
-    altText: "Feven Makeup Store catalog homepage",
-    problem:
-      "Providing a modern, clean web storefront to showcase beauty products and promotional merchandise.",
-    contribution:
-      "Built responsive storefront layout using semantic HTML, CSS, and interactive JavaScript.",
-    keyDecisions:
-      "High visual hierarchy with clean product imagery display.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    learned: "CSS layout techniques and cross-browser styling.",
-  },
 ];
 
 const Projects = () => {
