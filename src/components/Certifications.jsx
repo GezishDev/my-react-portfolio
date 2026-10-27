@@ -311,13 +311,6 @@ const Certifications = () => {
             )}
           </div>
         )}
-
-        {/* Verification Registry Note */}
-        <div className="certs-truth-note">
-          <p>
-            All listed credentials map to authenticated registries on <a href="https://www.credly.com/users/gezahegn-abera" target="_blank" rel="noopener noreferrer">Credly</a> and verified course completion files in <code>/public/certs/</code>. Detailed documentation in <a href="/CERTS.md" target="_blank" rel="noopener noreferrer">CERTS.md</a>.
-          </p>
-        </div>
       </div>
     </section>
   );

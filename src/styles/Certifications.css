@@ -326,31 +326,6 @@ body.light .credly-banner-card {
   width: 100%;
 }
 
-.certs-truth-note {
-  margin-top: 2.5rem;
-  padding: 1rem 1.25rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  text-align: center;
-}
-
-.certs-truth-note p {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.certs-truth-note a {
-  color: var(--accent-violet);
-  text-decoration: none;
-}
-
-.certs-truth-note a:hover {
-  text-decoration: underline;
-}
-
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 768px) {
   .credly-banner-card {
