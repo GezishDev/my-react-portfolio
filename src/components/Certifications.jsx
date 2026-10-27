@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiExternalLink, FiChevronDown, FiChevronUp, FiAward } from "react-icons/fi";
+import { FiExternalLink, FiChevronDown, FiChevronUp, FiAward, FiCheckCircle, FiShield } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Certifications.css";
 
@@ -36,8 +36,9 @@ const verifiedCoursework = [
     id: "ibm-data-lit",
     title: "IBM Data Literacy",
     issuer: "IBM",
-    designation: "Badge",
+    designation: "Credly Badge",
     fileLink: "/certs/ai-literacy-badge.pdf",
+    credlyUrl: "https://www.credly.com/users/gezahegn-abera",
     isPdf: true,
     featured: true,
   },
@@ -91,8 +92,9 @@ const verifiedCoursework = [
     id: "ibm-design",
     title: "IBM Design",
     issuer: "IBM",
-    designation: "Badge",
+    designation: "Credly Badge",
     fileLink: null,
+    credlyUrl: "https://www.credly.com/users/gezahegn-abera",
     isPdf: false,
     featured: false,
   },
@@ -123,12 +125,84 @@ const Certifications = () => {
           <p className="section-description">{t("certs.description")}</p>
         </header>
 
-        {/* Featured Row (4 Items) */}
+        {/* Official Credly Verification Banner Card */}
+        <div className="credly-banner-card card">
+          <div className="credly-banner-glow" aria-hidden="true" />
+          <div className="credly-banner-content">
+            <div className="credly-brand-group">
+              <div className="credly-badge-icon-box" aria-hidden="true">
+                <svg
+                  className="credly-brand-svg"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="24" cy="20" r="14" fill="url(#credlyGrad)" stroke="#FF6B00" strokeWidth="1.5" />
+                  <path d="M18 20L22 24L30 16" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M17 31L14 42L24 37L34 42L31 31" fill="url(#credlyRibbon)" stroke="#FF6B00" strokeWidth="1.5" strokeLinejoin="round" />
+                  <defs>
+                    <linearGradient id="credlyGrad" x1="10" y1="6" x2="38" y2="34" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#FF7A00" />
+                      <stop offset="1" stopColor="#E05300" />
+                    </linearGradient>
+                    <linearGradient id="credlyRibbon" x1="14" y1="31" x2="34" y2="42" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#E05300" />
+                      <stop offset="1" stopColor="#A83200" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div className="credly-text-info">
+                <div className="credly-meta-tag-row">
+                  <span className="status-chip credly-chip">
+                    <span className="status-dot credly-dot"></span>
+                    {t("certs.credly_badge")}
+                  </span>
+                  <span className="credly-auth-tag">
+                    <FiCheckCircle aria-hidden="true" />
+                    <span>Authenticated Registry</span>
+                  </span>
+                </div>
+                <h3 className="credly-banner-title">{t("certs.credly_title")}</h3>
+                <p className="credly-banner-desc">{t("certs.credly_desc")}</p>
+                <div className="credly-meta-pills">
+                  <span className="credly-pill">
+                    <FiShield aria-hidden="true" className="pill-icon" />
+                    <span>IBM & Partner Badges</span>
+                  </span>
+                  <span className="credly-pill">
+                    <FiCheckCircle aria-hidden="true" className="pill-icon" />
+                    <span>Publicly Verifiable</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="credly-cta-group">
+              <a
+                href="https://www.credly.com/users/gezahegn-abera"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary credly-profile-btn"
+                aria-label="View My Credly Profile (opens in new tab)"
+              >
+                <span>{t("certs.credly_btn")}</span>
+                <FiExternalLink aria-hidden="true" className="btn-icon-ext" />
+              </a>
+              <span className="credly-url-display">
+                <code>credly.com/users/gezahegn-abera</code>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Credential Cards Grid */}
         <div className="certs-grid">
           {featuredList.map((item) => (
             <article key={item.id} className="cert-card card">
               <div className="cert-top-bar">
-                <span className="status-chip coursework">
+                <span className={`status-chip ${item.designation.includes("Credly") ? "credly-card-chip" : "coursework"}`}>
                   {item.designation}
                 </span>
                 <span className="cert-icon-decor">
@@ -147,6 +221,17 @@ const Certifications = () => {
                     aria-label={`View document for ${item.title}`}
                   >
                     <span>{t("certs.view_cert")}</span>
+                    <FiExternalLink aria-hidden="true" />
+                  </a>
+                ) : item.credlyUrl ? (
+                  <a
+                    href={item.credlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cert-doc-link credly-doc-link"
+                    aria-label={`Verify ${item.title} on Credly`}
+                  >
+                    <span>Verify on Credly</span>
                     <FiExternalLink aria-hidden="true" />
                   </a>
                 ) : (
@@ -182,7 +267,7 @@ const Certifications = () => {
                 {remainingList.map((item) => (
                   <article key={item.id} className="cert-card card">
                     <div className="cert-top-bar">
-                      <span className="status-chip coursework">
+                      <span className={`status-chip ${item.designation.includes("Credly") ? "credly-card-chip" : "coursework"}`}>
                         {item.designation}
                       </span>
                       <span className="cert-icon-decor">
@@ -203,6 +288,17 @@ const Certifications = () => {
                           <span>{t("certs.view_cert")}</span>
                           <FiExternalLink aria-hidden="true" />
                         </a>
+                      ) : item.credlyUrl ? (
+                        <a
+                          href={item.credlyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="cert-doc-link credly-doc-link"
+                          aria-label={`Verify ${item.title} on Credly`}
+                        >
+                          <span>Verify on Credly</span>
+                          <FiExternalLink aria-hidden="true" />
+                        </a>
                       ) : (
                         <span className="cert-doc-status" style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
                           {t("certs.completed")}
@@ -216,11 +312,10 @@ const Certifications = () => {
           </div>
         )}
 
-        {/* Verification Note */}
+        {/* Verification Registry Note */}
         <div className="certs-truth-note">
           <p>
-            All listed credentials map to clean, verified files in <code>/public/certs/</code>.
-            Detailed registry maintained in <a href="/CERTS.md" target="_blank" rel="noopener noreferrer">CERTS.md</a>.
+            All listed credentials map to authenticated registries on <a href="https://www.credly.com/users/gezahegn-abera" target="_blank" rel="noopener noreferrer">Credly</a> and verified course completion files in <code>/public/certs/</code>. Detailed documentation in <a href="/CERTS.md" target="_blank" rel="noopener noreferrer">CERTS.md</a>.
           </p>
         </div>
       </div>

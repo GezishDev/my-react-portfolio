@@ -36,13 +36,17 @@ const Hero = () => {
   const { t } = useTranslation();
   const prefersReducedMotion = useReducedMotion();
   const cardRef = useRef(null);
-  const [canHover, setCanHover] = useState(false);
+  const [canHover, setCanHover] = useState(() => {
+    if (typeof window !== "undefined" && window.matchMedia) {
+      return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
     // Enable 3D tilt interaction exclusively for fine-pointer desktop devices
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window.matchMedia) {
       const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-      setCanHover(mediaQuery.matches);
       const handler = (e) => setCanHover(e.matches);
       if (mediaQuery.addEventListener) {
         mediaQuery.addEventListener("change", handler);

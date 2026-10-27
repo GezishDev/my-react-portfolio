@@ -57,6 +57,11 @@ const Footer = () => {
                     {t("footer.github")}
                   </a>
                 </li>
+                <li>
+                  <a href="https://www.credly.com/users/gezahegn-abera" target="_blank" rel="noopener noreferrer">
+                    Credly Profile
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>

@@ -306,6 +306,14 @@ section {
   transition: all var(--transition-fast);
   border: 1px solid transparent;
   white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    white-space: normal;
+  }
 }
 
 .btn-primary {

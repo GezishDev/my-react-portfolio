@@ -38,8 +38,8 @@ This document tracks all unconfirmed facts, missing dates, unverified contributi
 ### 4. Coursework & Badges (Pending Items / Details to Confirm)
 - [ ] **AI Safari Certificate**:
   - Issuer is currently UNKNOWN: Displayed as title only with no issuer. If issuer details (institution/platform) are found, update `issuer` field in `Certifications.jsx`.
-- [ ] **IBM Badges (Data Literacy & Design)**:
-  - Verify if public verification URLs / Credly badges should be linked when URLs are provided.
+- [x] **IBM Badges (Data Literacy & Design)**:
+  - Confirmed and linked to official Credly profile (`https://www.credly.com/users/gezahegn-abera`).
 - [ ] **Cisco Computer Hardware Basics & English for IT 1**:
   - PDFs are not currently stored in `/public/certs/`. Add certificate files if downloadable views are desired.
 

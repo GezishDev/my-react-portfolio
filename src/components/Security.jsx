@@ -1,4 +1,4 @@
-import { FiShield, FiLock, FiServer, FiCheckCircle } from "react-icons/fi";
+import { FiShield, FiLock, FiServer, FiCheckCircle, FiDownload } from "react-icons/fi";
 import { useTranslation } from "../context/LanguageContext";
 import "../styles/Security.css";
 
@@ -64,13 +64,14 @@ const Security = () => {
             <strong>{t("security.disclosure_label")} </strong>
             {t("security.disclosure_text")}
           </p>
-          <div className="security-secondary-cv-box" style={{ marginTop: "1rem" }}>
+          <div className="security-secondary-cv-box">
             <a
               href="/cv/Gezahegn_Abera_Networking_Security_CV.pdf"
               download="Gezahegn_Abera_Networking_Security_CV.pdf"
-              className="btn btn-secondary btn-sm"
+              className="btn btn-secondary security-cv-btn"
               aria-label={t("security.download_cv")}
             >
+              <FiDownload aria-hidden="true" className="security-cv-icon" />
               <span>{t("security.download_cv")}</span>
             </a>
           </div>
